@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript">
+        //初始化模块
+       var myapp =  angular.module("myapp",[]);
+
+
+       //自定义服务
+        myapp.service("myService",function($http){
+            this.getData = function(){
+                return $http.get("data.json");
+            }
+        });
+
+       //初始化模块控制器,并调用自定义服务
+       myapp.controller("mycontroller",function($scope,myService){
+           myService.getData().success(function(data){
+                $scope.list=data;
+           });
+       });
+    </script>
+</head>
+<body ng-app="myapp" ng-controller="mycontroller">
+    <div ng-repeat="obj in list">
+        {{obj.username}}-{{obj.age}}
+    </div>
+</body>
+</html>

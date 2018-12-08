@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript">
+       var myapp =  angular.module("myapp",[]);
+       myapp.controller("mycontroller",function($scope){
+           $scope.list=[
+               {username:'zs',age:20},
+               {username:'ls',age:30},
+               {username:'ww',age:40},
+               {username:'zl',age:50}
+           ]
+       });
+    </script>
+</head>
+<body ng-app="myapp" ng-controller="mycontroller">
+    <div ng-repeat="obj in list">
+        {{obj.username}}-{{obj.age}}
+    </div>
+</body>
+</html>
